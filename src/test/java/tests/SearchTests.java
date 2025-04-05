@@ -19,4 +19,14 @@ public class SearchTests extends TestBase {
             $$(id("org.wikipedia.alpha:id/page_list_item_title"))
                     .shouldHave(sizeGreaterThan(0)));
     }
+
+    void successfulNintendoSearchTest() {
+        step("Type search", () -> {
+            $(accessibilityId("Search Wikipedia")).click();
+            $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Nintendo");
+        });
+        step("Verify content found", () ->
+                $$(id("org.wikipedia.alpha:id/page_list_item_title"))
+                        .shouldHave(sizeGreaterThan(0)));
+    }
 }
