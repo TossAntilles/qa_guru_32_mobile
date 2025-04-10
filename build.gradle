@@ -44,9 +44,13 @@ dependencies {
     )
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 tasks.withType(Test) {
     useJUnitPlatform()
-
+    systemProperties(System.getProperties())
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
@@ -55,20 +59,21 @@ tasks.withType(Test) {
     }
 }
 
-task LocalApp(type: Test) {
+task local(type: Test) {
     useJUnitPlatform {
-        includeTags("InstalledApp")
+        includeTags("LocalApp")
     }
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
-        systemProperties(System.getProperties())
     }
+    systemProperty "deviceHost", System.setProperty("deviceHost", "local")
+    systemProperties(System.getProperties())
 }
 
-task BrowserstackApp(type: Test) {
+task browserstack(type: Test) {
     useJUnitPlatform {
         includeTags("Browserstack")
     }
@@ -77,6 +82,7 @@ task BrowserstackApp(type: Test) {
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
-        systemProperties(System.getProperties())
     }
+    systemProperty "deviceHost", System.setProperty("deviceHost", "browserstack")
+    systemProperties(System.getProperties())
 }
