@@ -6,7 +6,6 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import drivers.BrowserstackDriver;
 import drivers.LocalDriver;
 import helpers.Attach;
-import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -19,17 +18,13 @@ public class TestBase {
     @BeforeAll
     static void beforeAll() {
 
-        //System.setProperty("deviceHost", "local");
-        System.setProperty("deviceHost", "browserstack");
+        String deviceHost = System.getProperty("deviceHost");
 
-        switch (System.getProperty("deviceHost")) {
-            case "browserstack" -> {
-                Configuration.browser = BrowserstackDriver.class.getName();
+        switch (deviceHost) {
+            case "browserstack" -> Configuration.browser = BrowserstackDriver.class.getName();
+            case "local" -> Configuration.browser = LocalDriver.class.getName();
+            default -> throw new IllegalArgumentException("Unsupported deviceHost: " + deviceHost);
             }
-            case "local" -> {
-                Configuration.browser = LocalDriver.class.getName();
-            }
-        }
         Configuration.browserSize = null;
         Configuration.timeout = 30000;
     }
@@ -42,7 +37,8 @@ public class TestBase {
 
     @AfterEach
     void addAttachments() {
-        if (System.getProperty("deviceHost").equals("browserstack")) {
+        String deviceHost = System.getProperty("deviceHost");
+        if (deviceHost.equals("browserstack")) {
             String sessionId = Selenide.sessionId().toString();
             Attach.pageSource();
             closeWebDriver();
