@@ -69,7 +69,6 @@ task local(type: Test) {
             exceptionFormat "short"
         }
     }
-    systemProperty "deviceHost", System.setProperty("deviceHost", "local")
     systemProperties(System.getProperties())
 }
 
@@ -83,6 +82,5 @@ task browserstack(type: Test) {
             exceptionFormat "short"
         }
     }
-    systemProperty "deviceHost", System.setProperty("deviceHost", "browserstack")
     systemProperties(System.getProperties())
 }
