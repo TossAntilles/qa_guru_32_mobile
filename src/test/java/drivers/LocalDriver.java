@@ -31,14 +31,13 @@ public class LocalDriver implements WebDriverProvider {
 
         options.setAutomationName(ANDROID_UIAUTOMATOR2)
                 .setPlatformName(ANDROID)
-                .setPlatformVersion(lc.OSVERSION())
-                .setDeviceName(lc.DEVICE())
+                .setPlatformVersion(lc.osVersion())
+                .setDeviceName(lc.device())
                 .setApp(getAppPath())
-                .setAppPackage(lc.APP())
-                .setAppActivity(lc.APPACTIVITY());
+                .setAppPackage(lc.app())
+                .setAppActivity(lc.appActivity());
 
         return new AndroidDriver(getAppiumServerUrl(), options);
-
     }
 
     public static URL getAppiumServerUrl() {
@@ -50,8 +49,8 @@ public class LocalDriver implements WebDriverProvider {
     }
 
     private String getAppPath() {
-        String appVersion = lc.APPVERSION();
-        String appUrl = lc.APPURL() + appVersion;
+        String appVersion = lc.appVersion();
+        String appUrl = lc.appUrl() + appVersion;
         String appPath = "src/test/resources/app/" + appVersion;
 
         File app = new File(appPath);

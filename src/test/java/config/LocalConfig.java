@@ -9,27 +9,27 @@ import org.aeonbits.owner.Config;
 
         @Key("DEVICE")
         @DefaultValue("Pixel 4 API 30")
-        String DEVICE();
+        String device();
 
         @Key("OSVERSION")
         @DefaultValue("11")
-        String OSVERSION();
+        String osVersion();
 
 
         @Key("APP")
         @DefaultValue("org.wikipedia.alpha")
-        String APP();
+        String app();
 
         @Key("APPVERSION")
         @DefaultValue("alpha-universal-release.apk")
-        String APPVERSION();
+        String appVersion();
 
         @Key("APPURL")
         @DefaultValue("https://github.com/wikimedia/apps-android-wikipedia/releases/download/latest/")
-        String APPURL();
+        String appUrl();
 
         @Key("APPACTIVITY")
         @DefaultValue("org.wikipedia.main.MainActivity")
-        String APPACTIVITY();
+        String appActivity();
 
 }

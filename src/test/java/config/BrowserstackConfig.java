@@ -9,28 +9,28 @@ public interface BrowserstackConfig extends Config {
 
     @Key("APP")
     @DefaultValue("bs://sample.app")
-    String APP();
+    String app();
 
     @Key("DEVICE")
     @DefaultValue("Google Pixel 3")
-    String DEVICE();
+    String device();
 
     @Key("OS")
     @DefaultValue("9.0")
-    String OS();
+    String os();
 
 
     @Key("PROJECT")
-    String PROJECT();
+    String project();
 
     @Key("BUILD")
-    String BUILD();
+    String build();
 
     @Key("NAME")
-    String NAME();
+    String name();
 
     @Key("BROWSERSTACKURL")
     @DefaultValue("https://hub.browserstack.com/wd/hub")
-    String BROWSERSTACKURL();
+    String browserstackUrl();
 
 }

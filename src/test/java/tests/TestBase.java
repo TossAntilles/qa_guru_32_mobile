@@ -18,7 +18,7 @@ public class TestBase {
     @BeforeAll
     static void beforeAll() {
 
-        String deviceHost = System.getProperty("deviceHost");
+        String deviceHost = System.getProperty("deviceHost", "browserstack");
 
         switch (deviceHost) {
             case "browserstack" -> Configuration.browser = BrowserstackDriver.class.getName();

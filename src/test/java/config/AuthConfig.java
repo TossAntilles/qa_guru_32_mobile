@@ -10,11 +10,11 @@ public interface AuthConfig extends Config {
 
     @Key("USERNAME")
     @DefaultValue("toss_u3SGJg")
-    String USERNAME();
+    String username();
 
 
     @Key("PASSWORD")
     @DefaultValue("GxCha39Gauu2aZT7czCV")
-    String PASSWORD();
+    String password();
 
 }
